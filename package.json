@@ -1,0 +1,29 @@
+{
+  "name": "node-restful-starter",
+  "version": "1.0.0",
+  "main": "dist",
+  "license": "MIT",
+  "scripts": {
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "mkdir build && npm run build-babel && node ./build/index.js",
+    "start": "nodemon -w src --exec \"babel-node src\""
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "bcrypt": "3.0.2",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "express-validator": "^5.3.0",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.5",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.18.3"
+  }
+}
