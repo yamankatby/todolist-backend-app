@@ -1,32 +1,11 @@
 import mongoose from 'mongoose';
+import { IUser } from '../config/types';
 
-import jsonWebToken from 'jsonwebtoken';
-import { jwt_key } from '../config/constants';
-import bcrypt from 'bcryptjs';
-
-interface User {
-	isExists: (email: string) => boolean,
-	comparePassword: (password: string) => boolean,
-	generateAccessToken: () => string,
-}
-
-export const UserSchema = new mongoose.Schema<User>({
+const UserSchema = new mongoose.Schema<IUser>({
 	name: String,
 	email: String,
 	phone: String,
 	password: String,
 });
 
-UserSchema.methods.generateAccessToken = function () {
-	const { _id, email } = this;
-	return jsonWebToken.sign({ _id, email }, jwt_key, { expiresIn: '3d' });
-};
-
-UserSchema.methods.comparePassword = function (password) {
-	bcrypt.compare(password, this.password).then((result => {
-		return result;
-	}));
-	return false;
-};
-
-export default mongoose.model('User', UserSchema);
+export default mongoose.model('IUser', UserSchema);

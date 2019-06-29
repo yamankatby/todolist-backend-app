@@ -1,5 +1,5 @@
-import * as bcrypt from 'bcryptjs';
-import { Controller } from '../config/types';
+import { compare, hash } from 'bcryptjs';
+import { Controller, IUser } from '../config/types';
 
 import User from './model';
 import { generateAccessToken } from '../config/utilities';
@@ -11,7 +11,7 @@ export const register: Controller = async (request, response) => {
 		return;
 	}
 
-	const hashPassword = await bcrypt.hash(password, 10);
+	const hashPassword = await hash(password, 10);
 	const user = new User({
 		name,
 		email,
@@ -27,21 +27,25 @@ export const register: Controller = async (request, response) => {
 export const login: Controller = async (request, response) => {
 	const { email, password } = request.body;
 
-	const user = await User.findOne({ email });
-	if (!user) {
+	const isExists = await User.findOne({ email });
+	if (isExists === null) {
+		response.status(400).json({ message: 'Looks like you have entered wrong user credentials' });
 		return;
 	}
-// @ts-ignore
-	const comparePassword = bcrypt.compare(password, user.password);
+
+	const user: IUser = isExists.toObject();
+
+	const comparePassword = compare(password, user.password);
 	if (!comparePassword) {
+		response.status(400).json({ message: 'Looks like you have entered wrong user credentials' });
 		return;
 	}
-// @ts-ignore
+
 	const accessToken = generateAccessToken(user._id, user.email);
 	response.status(200).json({ accessToken });
 };
 
 export const profile: Controller = async (request, response) => {
-	// const { name, email } = request.currentUser;
-	// response.status(200).json({ name, email });
+	const { name, email, phone } = response.locals.currentUser;
+	response.status(200).json({ name, email, phone });
 };

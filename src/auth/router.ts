@@ -17,6 +17,7 @@ const routesMap: RoutesMap = {
 		path: root('profile'),
 		method: 'GET',
 		controller: profile,
+		authorized: true,
 	},
 };
 

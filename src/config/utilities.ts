@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import jsonWebToken from 'jsonwebtoken';
 
+import User from '../auth/model';
 import { jwt_key } from './constants';
 import { Controller } from './types';
 
@@ -19,6 +20,23 @@ export const errorCatcher = (controller: Controller) => (request: Request, respo
 	return controller(request, response, next).catch(next);
 };
 
-export const generateAccessToken = (userId: string, userEmail: string) => {
-	return jsonWebToken.sign({ userId, userEmail }, jwt_key, { expiresIn: '3d' });
+export const generateAccessToken = (id: string, email: string) => {
+	return jsonWebToken.sign({ id, email }, jwt_key, { expiresIn: '3d' });
+};
+
+export const _authorization = async (request: Request, response: Response, next: NextFunction) => {
+	const accessToken = request.headers.authorization;
+	if (!accessToken) {
+		response.status(401).json({ message: '401 Unauthorized' });
+		return;
+	}
+
+	try {
+		// @ts-ignore
+		const email = await jsonWebToken.verify(accessToken, jwt_key).email;
+		response.locals.currentUser = await User.findOne({ email });
+		next();
+	} catch (e) {
+		response.status(401).json({ message: '401 Unauthorized' });
+	}
 };
