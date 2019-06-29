@@ -6,6 +6,8 @@ const UserSchema = new mongoose.Schema<IUser>({
 	email: String,
 	phone: String,
 	password: String,
+
+	todos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Todo' }],
 });
 
-export default mongoose.model('IUser', UserSchema);
+export default mongoose.model('User', UserSchema);

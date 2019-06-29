@@ -18,3 +18,10 @@ export interface IUser {
 	phone: string,
 	password: string,
 }
+
+export interface ITodo {
+	_id: string,
+	text: string,
+	completed: string,
+	_createdBy: string,
+}

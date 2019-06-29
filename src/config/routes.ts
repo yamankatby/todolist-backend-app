@@ -4,6 +4,7 @@ import { RoutesMap } from './types';
 
 import { _authorization, errorCatcher } from './utilities';
 import authRoutes from '../auth/router';
+import todosRoutes from '../todos/routes';
 
 export const listener = (express: Express) => (routesMap: RoutesMap) => {
 	forIn(routesMap, (key, route) => {
@@ -26,4 +27,5 @@ export default (express: Express) => {
 
 	const listen = listener(express);
 	listen(authRoutes);
+	listen(todosRoutes);
 }
