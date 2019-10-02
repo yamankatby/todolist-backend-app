@@ -6,8 +6,9 @@ import logger from 'morgan';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
-import mainRouter from './main/routes';
-import usersRouter from './users/routes';
+import mainRouter from './main/router';
+import usersRouter from './users/router';
+import todosRouter from './todos/router';
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', mainRouter);
 app.use('/users', usersRouter);
+app.use('/todos', todosRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

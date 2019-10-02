@@ -1692,6 +1692,11 @@ morgan@~1.9.1:
     on-finished "~2.3.0"
     on-headers "~1.0.1"
 
+morphism@^1.12.1:
+  version "1.12.1"
+  resolved "https://registry.yarnpkg.com/morphism/-/morphism-1.12.1.tgz#543f690afd342d0d4d2175b1ab84cdfbe6f7c8f4"
+  integrity sha512-eTBep6aQXFDErLaLiIFmInbUIUVEPR7PmIKmDfRQHt7Eq9hvpgWRAfbvZfwJCxuUcyK6kzHHrt+jiq/S7JmOLw==
+
 mpath@0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/mpath/-/mpath-0.6.0.tgz#aa922029fca4f0f641f360e74c5c1b6a4c47078e"

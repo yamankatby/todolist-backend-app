@@ -1,10 +1,11 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
-export interface User extends Document {
+export interface IUser extends Document {
 	name: string;
 	email: string;
 	password: string;
 	date: Date;
+	todos: {}[];
 }
 
 const userSchema: Schema = new mongoose.Schema({
@@ -30,6 +31,7 @@ const userSchema: Schema = new mongoose.Schema({
 		type: Date,
 		default: Date.now(),
 	},
+	todos: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Todo' }],
 });
 
-export default mongoose.model<User>('User', userSchema);
+export default mongoose.model<IUser>('User', userSchema);
