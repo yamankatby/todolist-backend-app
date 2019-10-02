@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var dotenv = require('dotenv');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./processes/users/routes');
+var usersRouter = require('./build').usersRoutes;
 
 var app = express();
 

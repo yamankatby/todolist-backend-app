@@ -65,7 +65,6 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -90,3 +89,4 @@ typings/
 .dynamodb/
 
 .idea/
+build/*

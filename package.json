@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "if [[ $NODE_ENV == 'production' ]]; then node ./bin/www; else nodemon ./bin/www; fi;"
+    "start": "if [[ $NODE_ENV == 'production' ]]; then node ./bin/www; else nodemon ./bin/www; fi;",
+    "build": "tsc -w"
   },
   "dependencies": {
     "@hapi/joi": "15.0.3",
@@ -19,6 +20,11 @@
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.1",
+    "@types/hapi__joi": "^15.0.4",
+    "@types/jsonwebtoken": "^8.3.4",
+    "@types/mongoose": "^5.5.18",
     "nodemon": "^1.19.3"
   }
 }
