@@ -1,46 +1,36 @@
 {
   "name": "todo-app-backend",
-  "version": "1.0.0",
-  "main": "build/index.js",
-  "license": "MIT",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "build": "webpack -w",
-    "start": "node ./build/index.js",
-    "release": "node_modules/.bin/webpack --mode production --config ./webpack.config.js"
+    "start": "if [[ $NODE_ENV == 'production' ]]; then node ./bin/www; else nodemon ./bin/www; fi;",
+    "build": "tsc -w"
   },
   "dependencies": {
-    "babel-core": "^6.26.3",
-    "babel-polyfill": "^6.26.0",
-    "bcrypt": "^3.0.6",
+    "@hapi/joi": "15.0.3",
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "cors": "^2.8.4",
-    "express": "^4.16.3",
-    "express-validator": "^5.3.0",
-    "jsonwebtoken": "^8.3.0",
-    "mongoose": "^5.2.5",
-    "morgan": "^1.9.0",
-    "node": "^12.5.0",
-    "redux-immutable-helper": "^1.0.4",
-    "source-map-loader": "^0.2.4"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.1.0",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.3",
+    "morgan": "~1.9.1",
+    "morphism": "^1.12.1",
+    "pug": "2.0.0-beta11",
+    "redux-immutable-helper": "^1.0.4"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
-    "@types/cors": "^2.8.5",
-    "@types/express": "^4.17.0",
-    "@types/jsonwebtoken": "^8.3.2",
-    "@types/mongoose": "^5.5.6",
-    "@types/morgan": "^1.7.35",
-    "@types/node": "^12.0.10",
-    "babel-preset-env": "^1.7.0",
-    "nodemon": "^1.18.3",
-    "ts-loader": "^6.0.4",
-    "typescript": "^3.5.2",
-    "webpack": "4.35.2",
-    "webpack-cli": "^3.3.5",
-    "webpack-node-externals": "^1.7.2"
-  },
-  "engines": {
-    "node": "10.15.2"
+    "@types/cookie-parser": "^1.4.2",
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.1",
+    "@types/hapi__joi": "^15.0.4",
+    "@types/http-errors": "^1.6.2",
+    "@types/jsonwebtoken": "^8.3.4",
+    "@types/mongoose": "^5.5.18",
+    "@types/morgan": "^1.7.37",
+    "nodemon": "^1.19.3"
   }
 }
