@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const app = require('./build');
+const app = require('./src');
 const debug = require('debug')('todo-app-backend:server');
 const http = require('http');
 
