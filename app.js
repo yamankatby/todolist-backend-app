@@ -3,9 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
+var dotenv = require('dotenv');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./processes/users/routes');
 
 var app = express();
 
@@ -36,6 +38,15 @@ app.use(function (err, req, res, next) {
 	// render the error page
 	res.status(err.status || 500);
 	res.render('error');
+});
+
+// configure dotenv
+dotenv.config();
+
+// connect to database
+var database_url = ('mongodb://$UN:$PASS@ds343887.mlab.com:43887/todo-app-backend').replace('$UN', process.env.DATABASE_UN).replace('$PASS', process.env.DATABASE_PASS);
+mongoose.connect(database_url, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+	console.log('Mongoose connected to the Database');
 });
 
 module.exports = app;
