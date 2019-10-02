@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "if [[ $NODE_ENV == 'production' ]]; then node ./bin/www; else nodemon ./bin/www; fi;",
-    "build": "tsc -w"
+    "start": "if [[ $NODE_ENV == 'production' ]]; then node ./bin/www; else nodemon ./bin/www; fi;"
+  },
+  "engines": {
+    "node": "10.15.2",
+    "yarn": "1.15.2"
   },
   "dependencies": {
     "@hapi/joi": "15.0.3",
