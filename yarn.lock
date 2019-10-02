@@ -2175,6 +2175,11 @@ readdirp@^2.2.1:
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
 
+redux-immutable-helper@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/redux-immutable-helper/-/redux-immutable-helper-1.0.4.tgz#6f89a8d8e804ab8078f985091d85ea49ab722311"
+  integrity sha512-LUe7gTrIjzJWL7BAr5cUWOiE5/DNkwnL2PZTre11TsxPytWMMqgIVsZMxAqNf2y5b2M3bTAi8Izxd7pp1q0xJA==
+
 regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"

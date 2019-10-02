@@ -5,22 +5,24 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import { array } from 'redux-immutable-helper';
 
 import mainRouter from './main/router';
 import usersRouter from './users/router';
 import todosRouter from './todos/router';
 
 const app = express();
+const root = array(__dirname.split('/')).pop().toArray().reduce((previousValue, currentValue) => previousValue.concat(`${currentValue}/`), '');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(root, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(root, 'public')));
 
 app.use('/', mainRouter);
 app.use('/users', usersRouter);
