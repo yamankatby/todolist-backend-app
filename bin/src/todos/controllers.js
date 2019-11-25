@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -94,8 +105,46 @@ exports.create = function (request, response) { return __awaiter(void 0, void 0,
         }
     });
 }); };
+exports.edit = function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
+    var error, id, name_2, currentUser, todo, e_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                error = validators_1.editValidator(__assign(__assign({}, request.query), request.body)).error;
+                if (error) {
+                    response.status(400).send({ message: error.details[0].message });
+                    return [2 /*return*/];
+                }
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 5, , 6]);
+                id = request.query.id;
+                name_2 = request.body.name;
+                return [4 /*yield*/, models_1.default.findOne({ _id: response.locals.currentUser._id })];
+            case 2:
+                currentUser = (_a.sent());
+                return [4 /*yield*/, models_2.default.findOne({ _id: id, createdBy: currentUser._id })];
+            case 3:
+                todo = _a.sent();
+                if (!todo) {
+                    response.status(400).send('Couldn\'t find the Todo');
+                    return [2 /*return*/];
+                }
+                return [4 /*yield*/, todo.update({ name: name_2 }, { new: true, runValidators: true }).exec()];
+            case 4:
+                _a.sent();
+                response.status(200).send();
+                return [3 /*break*/, 6];
+            case 5:
+                e_2 = _a.sent();
+                response.status(400).send(e_2);
+                return [3 /*break*/, 6];
+            case 6: return [2 /*return*/];
+        }
+    });
+}); };
 exports.toggle = function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-    var error, id, currentUser, todo, e_2;
+    var error, id, currentUser, todo, e_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -124,15 +173,15 @@ exports.toggle = function (request, response) { return __awaiter(void 0, void 0,
                 response.status(200).send();
                 return [3 /*break*/, 6];
             case 5:
-                e_2 = _a.sent();
-                response.status(400).send(e_2);
+                e_3 = _a.sent();
+                response.status(400).send(e_3);
                 return [3 /*break*/, 6];
             case 6: return [2 /*return*/];
         }
     });
 }); };
 exports.remove = function (request, response) { return __awaiter(void 0, void 0, void 0, function () {
-    var error, id, currentUser, todo, e_3;
+    var error, id, currentUser, todo, e_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -161,8 +210,8 @@ exports.remove = function (request, response) { return __awaiter(void 0, void 0,
                 response.status(200).send();
                 return [3 /*break*/, 6];
             case 5:
-                e_3 = _a.sent();
-                response.status(400).send(e_3);
+                e_4 = _a.sent();
+                response.status(400).send(e_4);
                 return [3 /*break*/, 6];
             case 6: return [2 /*return*/];
         }

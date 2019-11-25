@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import User from '../users/models';
 import Todo from './models';
 
-import { createValidator, removeValidator, toggleValidator } from './validators';
+import { createValidator, editValidator, removeValidator, toggleValidator } from './validators';
 import { todoMapper } from './mapper';
 
 export const index = async (request: Request, response: Response) => {
@@ -32,6 +32,31 @@ export const create = async (request: Request, response: Response) => {
 		await currentUser.save();
 
 		response.send(todoMapper(savedTodo));
+	} catch (e) {
+		response.status(400).send(e);
+	}
+};
+
+export const edit = async (request: Request, response: Response) => {
+	const { error } = editValidator({ ...request.query, ...request.body });
+	if (error) {
+		response.status(400).send({ message: error.details[0].message });
+		return;
+	}
+
+	try {
+		const { id } = request.query;
+		const { name } = request.body;
+		const currentUser = (await User.findOne({ _id: response.locals.currentUser._id }))!;
+
+		const todo = await Todo.findOne({ _id: id, createdBy: currentUser._id });
+		if (!todo) {
+			response.status(400).send('Couldn\'t find the Todo');
+			return;
+		}
+
+		await todo.update({ name }, { new: true, runValidators: true }).exec();
+		response.status(200).send();
 	} catch (e) {
 		response.status(400).send(e);
 	}

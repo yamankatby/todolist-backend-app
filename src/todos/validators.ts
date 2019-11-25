@@ -10,6 +10,12 @@ export const toggleValidator = (data: any) =>
 		id: Joi.string().required(),
 	});
 
+export const editValidator = (data: any) =>
+	Joi.validate(data, {
+		id: Joi.string().required(),
+		name: Joi.string().required(),
+	});
+
 export const removeValidator = (data: any) =>
 	Joi.validate(data, {
 		id: Joi.string().required(),

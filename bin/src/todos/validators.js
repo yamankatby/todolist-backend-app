@@ -14,6 +14,12 @@ exports.toggleValidator = function (data) {
         id: joi_1.default.string().required(),
     });
 };
+exports.editValidator = function (data) {
+    return joi_1.default.validate(data, {
+        id: joi_1.default.string().required(),
+        name: joi_1.default.string().required(),
+    });
+};
 exports.removeValidator = function (data) {
     return joi_1.default.validate(data, {
         id: joi_1.default.string().required(),

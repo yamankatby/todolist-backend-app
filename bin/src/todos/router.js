@@ -6,6 +6,7 @@ var utilities_1 = require("../config/utilities");
 var router = express_1.Router();
 router.get('/', utilities_1.authorization, controllers_1.index);
 router.post('/create', utilities_1.authorization, controllers_1.create);
+router.post('/edit', utilities_1.authorization, controllers_1.edit);
 router.post('/toggle', utilities_1.authorization, controllers_1.toggle);
 router.post('/remove', utilities_1.authorization, controllers_1.remove);
 exports.default = router;
