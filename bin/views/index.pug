@@ -1,5 +1,34 @@
 extends layout
 
 block content
-    h1= title
-    p Welcome to #{title}
+    .container.mt-3.mt-sm-5
+        h1= title
+        a(href="#") Github Repository
+        .card.mt-3
+            .card-header
+                | Register a new account
+            .card-body
+                form(method='POST' action='/users/register')
+                    .form-group
+                        label(for='registerName') Full name
+                        input#registerName.form-control(name='name' type='text' placeholder='Enter your name' required='' minlength='6' maxlength='255')
+                    .form-group
+                        label(for='registerEmail') Email address
+                        input#registerEmail.form-control(name='email' type='email' placeholder='Enter email' required='')
+                        small.form-text.text-muted We&apos;ll never share your email with anyone else.
+                    .form-group
+                        label(for='registerPassword') Password
+                        input#registerPassword.form-control(name='password' type='password' placeholder='Password' required='' minlength='6' maxlength='255')
+                    button.btn.btn-primary(type='submit') Register
+        .card.mt-3
+            .card-header
+                | Login to your account
+            .card-body
+                form(method='POST' action='/users/login')
+                    .form-group
+                        label(for='loginEmail') Email address
+                        input#loginEmail.form-control(name='email' type='email' placeholder='Enter email' required='')
+                    .form-group
+                        label(for='loginPassword') Password
+                        input#loginPassword.form-control(name='password' type='password' placeholder='Password' required='' minlength='6' maxlength='255')
+                    button.btn.btn-primary(type='submit') Login
