@@ -6,6 +6,7 @@ import logger from 'morgan';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import { array } from 'redux-immutable-helper';
+import cors from 'cors';
 
 import mainRouter from './main/router';
 import usersRouter from './users/router';
@@ -23,6 +24,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(root, 'public')));
+
+app.use(cors());
 
 app.use('/', mainRouter);
 app.use('/users', usersRouter);
