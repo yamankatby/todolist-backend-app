@@ -22,7 +22,7 @@
     "mongoose": "^5.7.5",
     "morgan": "~1.9.1",
     "morphism": "^1.12.1",
-    "pug": "2.0.0-beta11",
+    "pug": "3.0.1",
     "redux-immutable-helper": "^1.0.4"
   },
   "devDependencies": {
