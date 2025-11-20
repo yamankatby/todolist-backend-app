@@ -15,7 +15,7 @@ https://todolist-backend-app.herokuapp.com/users/register
 ```json
 {
   "name": "Yaman KATBY",
-  "email": "m.yaman.katby@gmail.com",
+  "email": "hey@gmail.com",
   "password": "123456"
 }
 ```
@@ -33,7 +33,7 @@ https://todolist-backend-app.herokuapp.com/users/login
 
 ```json
 {
-  "email": "m.yaman.katby@gmail.com",
+  "email": "hey@gmail.com",
   "password": "123456"
 }
 ```
